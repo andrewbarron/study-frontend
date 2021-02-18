@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 const GoalsForm = ({ session, handleSubmit, handleChange }) => (
   <form onSubmit={handleSubmit} >
@@ -10,15 +10,8 @@ const GoalsForm = ({ session, handleSubmit, handleChange }) => (
       name="goals"
       onChange={handleChange}
     />
-    <label>Review</label>
-    <input
-      placeholder="Session review"
-      value={session.review}
-      name="review"
-      onChange={handleChange}
-    />
     <button type="submit">Submit</button>
   </form>
 )
 
-export default GoalsForm
+export default withRouter(GoalsForm)

@@ -10,7 +10,9 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import CreateSession from './components/CreateSession/CreateSession'
-
+import CloseSession from './components/CloseSession/CloseSession'
+import ShowSession from './components/ShowSession/ShowSession'
+import IndexSession from './components/IndexSession/IndexSession'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -60,8 +62,17 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
-          <AuthenticatedRoute user={user} path='/sessions' render={() => (
+          <AuthenticatedRoute user={user} path='/create-session' render={() => (
             <CreateSession user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/sessions' render={() => (
+            <IndexSession user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sessions/:id' render={() => (
+            <ShowSession user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sessions/:id/close' render={() => (
+            <CloseSession user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />

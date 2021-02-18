@@ -4,7 +4,7 @@ import React from 'react'
 
 const Layout = props => (
   <div>
-    <h1>How do I get Here</h1>
+    <h1>Show</h1>
 
     {props.children}
 
