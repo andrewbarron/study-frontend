@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field } from 'formik'
 
 // const GoalsForm = ({ session, handleSubmit, handleChange }) => (
 //   <form onSubmit={handleSubmit} >
@@ -19,13 +19,14 @@ const GoalsForm = ({ session, handleSubmit, handleChange, handleReset }) => (
   <div>
     <h1 className="center-this">What would you like to accomplish?</h1>
     <Formik
-      initialValues={{ goals: '' }}
+      initialValues={{ goal1: '', goal2: '', goal3: '' }}
     >
       {({ isSubmitting }) => (
         <Form onSubmit={handleSubmit}>
           <div className="center-this">
-            <Field placeholder="Session Goals" type="text" name="goals" value={session.goals} onChange={handleChange} />
-            <ErrorMessage name="password" component="div" />
+            <Field placeholder="Session Goal 1" type="text" name="goal1" value={session.goal1} onChange={handleChange} />
+            <Field placeholder="Session Goal 2" type="text" name="goal2" value={session.goal2} onChange={handleChange} />
+            <Field placeholder="Session Goal 3" type="text" name="goal3" value={session.goal3} onChange={handleChange} />
           </div>
           <div className="center-this" >
             <button type="submit" className="btn btn-success" disabled={isSubmitting} >

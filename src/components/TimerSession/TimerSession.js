@@ -3,10 +3,13 @@ import { Redirect, withRouter } from 'react-router-dom'
 import { showSession } from '../../api/sessions'
 import Layout from '../Layout/Layout'
 import { StudyTimer, BreakTimer } from '../Timer/Timer'
+// import Checkbox from '../Checkbox/Checkbox'
 
 const TimerSession = props => {
   const [session, setSession] = useState([])
   const [clickMe, setClickMe] = useState(false)
+  // const [checked, setChecked] = useState(false)
+  // console.log(checked)
 
   useEffect(() => {
     // SHOW SESSION
@@ -21,6 +24,11 @@ const TimerSession = props => {
     setClickMe(true)
   }
 
+  // const handleCheckboxChange = event => {
+  //   event.preventDefault()
+  //   setChecked(!checked)
+  // }
+
   if (!session) {
     return <p>Loading...</p>
   }
@@ -31,10 +39,12 @@ const TimerSession = props => {
 
   return (
     <Layout>
-      <p>this is Timer</p>
+      <p>Session Goals (Timer)</p>
       <div className="goals">
         <ul>
-          <li>Session Goals: {session.goals}</li>
+          <li>{session.goal1}</li>
+          <li>{session.goal2}</li>
+          <li>{session.goal3}</li>
         </ul>
       </div>
       <div className="timerContainer">

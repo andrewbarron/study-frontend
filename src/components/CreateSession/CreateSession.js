@@ -10,7 +10,7 @@ import GoalsForm from '../GoalsForm/GoalsForm'
 const CreateSession = props => {
   const user = (props.user)
   // My session is empty to start.
-  const [session, setSession] = useState({ goals: '', review: '' })
+  const [session, setSession] = useState({ goal1: '', goal2: '', goal3: '', review: '' })
   // Session ID is the redirect after GoalsForm
   const [createdSessionId, setCreatedSessionId] = useState(null)
   // goalsSet is set to false, once I complete the GoalsForm, set it to true & init the next step.

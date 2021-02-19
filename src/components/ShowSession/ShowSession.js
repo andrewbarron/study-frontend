@@ -31,20 +31,17 @@ const ShowSession = props => {
     return <Redirect to={'/'} />
   }
 
-  // if (session) {
-  //   newGoals = session.goals.split(';').map((goals, i) => <p key={i}>{goals}</p>)
-  //   return newGoals
-  // }
-
   return (
     <Layout>
-      <p>This is show</p>
+      <p>Session Goals (Show)</p>
       <div className="goals">
         <ul>
-          <li>Session Goals: {session.goals}</li>
+          <li>{session.goal1}</li>
+          <li>{session.goal2}</li>
+          <li>{session.goal3}</li>
         </ul>
       </div>
-      <h4>Session Review: {session.review}</h4>
+      <h4>Session Review {session.review}</h4>
       <div className="center-this">
         <button className="btn btn-danger" onClick={destory}>Delete Session</button>
       </div>

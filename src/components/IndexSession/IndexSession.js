@@ -15,7 +15,7 @@ const IndexSession = props => {
 
   const sessionsJsx = sessions.map(session => (
     <li key={session._id}>
-      <Link to={`/sessions/${session._id}`}>{session.goals}</Link>
+      <Link to={`/sessions/${session._id}`}>{session._id}</Link>
     </li>
   ))
 
