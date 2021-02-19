@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
-import { showSession, deleteSession } from '../../api/sessions'
+import { showSession } from '../../api/sessions'
 import Layout from '../Layout/Layout'
 
-const ShowSession = props => {
+const TimerSession = props => {
   const [session, setSession] = useState([])
-  const [deleted, setDeleted] = useState(false)
+  const [clickMe, setClickMe] = useState(false)
   console.log('this is the props in show ', props)
 
   useEffect(() => {
@@ -14,30 +14,26 @@ const ShowSession = props => {
       .catch()
   }, [])
 
-  const destory = () => {
-    deleteSession(props.match.params.id, props.user)
-      .then(setDeleted(true))
-      .catch(console.error)
+  const handleThisClick = event => {
+    event.preventDefault()
+    setClickMe(true)
   }
 
   if (!session) {
     return <p>Loading...</p>
   }
 
-  if (deleted) {
-    return <Redirect to={'/'} />
+  if (clickMe) {
+    return <Redirect to={`/sessions/${session._id}/close`} />
   }
 
   return (
     <Layout>
-      <p>This is show</p>
+      <p>This is Timer</p>
       <h4>{session.goals}</h4>
-      <h4>{session.review}</h4>
-      <h4>{session.owner}</h4>
       <h4>{session.createdAt}</h4>
-      <h4>{session.updatedAt}</h4>
-      <button onClick={destory}>Delete Session</button>
+      <button onClick={handleThisClick}>Close</button>
     </Layout>
   )
 }
-export default withRouter(ShowSession)
+export default withRouter(TimerSession)

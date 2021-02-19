@@ -24,14 +24,14 @@ export const createSession = (user, session) => {
 }
 
 // update
-export const closeSession = (id, session, user) => {
+export const closeSession = (id, user, session) => {
   return axios({
-    url: apiUrl + '/sessions/' + id,
+    url: apiUrl + '/sessions/' + id + '/close',
     method: 'PATCH',
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
-    data: { session }
+    data: { session: session }
   })
 }
 
@@ -40,6 +40,17 @@ export const showSession = (id, user, session) => {
   return axios({
     url: apiUrl + '/sessions/' + id,
     method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    }
+  })
+}
+
+// Delete
+export const deleteSession = (id, user) => {
+  return axios({
+    url: apiUrl + '/sessions/' + id,
+    method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${user.token}`
     }

@@ -17,6 +17,10 @@ const IndexSession = props => {
     </li>
   ))
 
+  if (sessionsJsx.length === 0) {
+    return <p>No prior sessions.</p>
+  }
+
   return (
     <Fragment>
       <h4>Sessions</h4>

@@ -35,11 +35,11 @@ const CreateSession = props => {
     console.log('this is handleSubmit event', event)
     createSession(user, session)
       .then(res => setCreatedSessionId(res.data.session._id))
-      .catch(console.log('error'))
+      .catch(console.error)
   }
 
   if (createdSessionId) {
-    return <Redirect to={`/sessions/${createdSessionId}`} />
+    return <Redirect to={`/sessions/${createdSessionId}/timer`} />
   }
 
   return (
