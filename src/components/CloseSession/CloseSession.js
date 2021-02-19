@@ -10,7 +10,6 @@ const CloseSession = props => {
   const user = (props.user)
   const [session, setSession] = useState({ review: '' })
   const [updated, setUpdated] = useState(false)
-  console.log('this is session in session in closeSession ', session)
 
   const handleChange = event => {
     event.persist()
@@ -23,12 +22,13 @@ const CloseSession = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    // UPDATE SESSION
     closeSession(props.match.params.id, user, session)
       .then(setUpdated(true))
+      .then(console.log('UPDATE/CLOSE SUCCESS'))
       .catch(console.error)
   }
 
-  console.log(updated)
   if (updated) {
     return <Redirect to={'/'} />
   }

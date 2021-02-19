@@ -7,3 +7,27 @@ $create: #38b000;
 $finish: #EE964B;
 
 @import '~bootstrap/scss/bootstrap';
+
+.timerContainer {
+  display: flex;
+}
+
+.goals {
+  display: flex;
+  justify-content: center;
+}
+
+.studyTimer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.breakTimer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.center-this {
+  display: flex;
+  justify-content: center;
+}

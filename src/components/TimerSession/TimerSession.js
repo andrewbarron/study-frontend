@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { showSession } from '../../api/sessions'
 import Layout from '../Layout/Layout'
+import { StudyTimer, BreakTimer } from '../Timer/Timer'
 
 const TimerSession = props => {
   const [session, setSession] = useState([])
   const [clickMe, setClickMe] = useState(false)
-  console.log('this is the props in show ', props)
 
   useEffect(() => {
+    // SHOW SESSION
     showSession(props.match.params.id, props.user)
       .then(res => setSession(res.data.session))
+      .then(console.log('SHOW TIMERPAGE SUCCESS'))
       .catch()
   }, [])
 
@@ -29,10 +31,23 @@ const TimerSession = props => {
 
   return (
     <Layout>
-      <p>This is Timer</p>
-      <h4>{session.goals}</h4>
-      <h4>{session.createdAt}</h4>
-      <button onClick={handleThisClick}>Close</button>
+      <p>this is Timer</p>
+      <div className="goals">
+        <ul>
+          <li>Session Goals: {session.goals}</li>
+        </ul>
+      </div>
+      <div className="timerContainer">
+        <p>Study timer</p>
+        <StudyTimer
+        />
+        <p>Break timer</p>
+        <BreakTimer
+        />
+      </div>
+      <div className="center-this">
+        <button className="btn btn-success" onClick={handleThisClick}>Finish Session</button>
+      </div>
     </Layout>
   )
 }

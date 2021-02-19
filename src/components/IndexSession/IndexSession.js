@@ -4,10 +4,12 @@ import { indexSession } from '../../api/sessions'
 
 const IndexSession = props => {
   const [sessions, setSessions] = useState([])
-  console.log('this is sessions in index', sessions)
+
   useEffect(() => {
+    // INDEX SESSIONS
     indexSession(props.user)
       .then(res => setSessions(res.data.sessions))
+      .then(console.log('INDEX SUCCESS'))
       .catch()
   }, [])
 

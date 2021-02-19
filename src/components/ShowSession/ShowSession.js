@@ -6,17 +6,20 @@ import Layout from '../Layout/Layout'
 const ShowSession = props => {
   const [session, setSession] = useState([])
   const [deleted, setDeleted] = useState(false)
-  console.log('this is the props in show ', props)
 
   useEffect(() => {
+    // SHOW SESSION
     showSession(props.match.params.id, props.user)
       .then(res => setSession(res.data.session))
+      .then(console.log('SHOW FINISHED SESSION SUCCCESS'))
       .catch()
   }, [])
 
   const destory = () => {
+    // DELETE SESSION
     deleteSession(props.match.params.id, props.user)
       .then(setDeleted(true))
+      .then(console.log('DELETE SUCCESS'))
       .catch(console.error)
   }
 
@@ -28,15 +31,23 @@ const ShowSession = props => {
     return <Redirect to={'/'} />
   }
 
+  // if (session) {
+  //   newGoals = session.goals.split(';').map((goals, i) => <p key={i}>{goals}</p>)
+  //   return newGoals
+  // }
+
   return (
     <Layout>
       <p>This is show</p>
-      <h4>{session.goals}</h4>
-      <h4>{session.review}</h4>
-      <h4>{session.owner}</h4>
-      <h4>{session.createdAt}</h4>
-      <h4>{session.updatedAt}</h4>
-      <button onClick={destory}>Delete Session</button>
+      <div className="goals">
+        <ul>
+          <li>Session Goals: {session.goals}</li>
+        </ul>
+      </div>
+      <h4>Session Review: {session.review}</h4>
+      <div className="center-this">
+        <button className="btn btn-danger" onClick={destory}>Delete Session</button>
+      </div>
     </Layout>
   )
 }
