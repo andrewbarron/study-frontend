@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
 // import axios from 'axios'
 // import Button from 'react-bootstrap/Button'
 import { createSession } from '../../api/sessions'
@@ -28,11 +29,22 @@ const CreateSession = props => {
   // handleSubmit on the GoalsForm should redirect to the timer page with Goals pinned on the top of the page.
   const handleSubmit = event => {
     event.preventDefault()
+    const msgAlert = props.msgAlert
     // CREATE SESSION
     createSession(user, session)
       .then(res => setCreatedSessionId(res.data.session._id))
-      .then(console.log('CREATE SUCCESS'))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Created Session!',
+        message: messages.createSessionSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Create Session failed with error: ' + error.message,
+          message: messages.createSessionFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   if (createdSessionId) {

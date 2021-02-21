@@ -1,16 +1,28 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { indexSession } from '../../api/sessions'
+import messages from '../AutoDismissAlert/messages'
 
 const IndexSession = props => {
   const [sessions, setSessions] = useState([])
 
   useEffect(() => {
+    const msgAlert = props.msgAlert
     // INDEX SESSIONS
     indexSession(props.user)
       .then(res => setSessions(res.data.sessions))
-      .then(console.log('INDEX SUCCESS'))
-      .catch()
+      .then(() => msgAlert({
+        heading: 'Index your sessions',
+        message: messages.indexSessionsSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Index Session failed with error: ' + error.message,
+          message: messages.indexSessionFailure,
+          variant: 'danger'
+        })
+      })
   }, [])
 
   const sessionsJsx = sessions.map(session => (

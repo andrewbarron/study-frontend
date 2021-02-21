@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
+import messages from '../AutoDismissAlert/messages'
 // import axios from 'axios'
 import { closeSession } from '../../api/sessions'
 // import messages from '../AutodismissAlert/messages'
@@ -22,11 +23,22 @@ const CloseSession = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    const msgAlert = props.msgAlert
     // UPDATE SESSION
     closeSession(props.match.params.id, user, session)
       .then(setUpdated(true))
-      .then(console.log('UPDATE/CLOSE SUCCESS'))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Closed Session!',
+        message: messages.closeSessionSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Close Session failed with error ' + error.message,
+          message: messages.closeSessionFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   if (updated) {

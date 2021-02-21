@@ -2,25 +2,48 @@ import React, { useState, useEffect } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { showSession, deleteSession } from '../../api/sessions'
 import Layout from '../Layout/Layout'
+import messages from '../AutoDismissAlert/messages'
 
 const ShowSession = props => {
   const [session, setSession] = useState([])
   const [deleted, setDeleted] = useState(false)
 
   useEffect(() => {
+    const msgAlert = props.msgAlert
     // SHOW SESSION
     showSession(props.match.params.id, props.user)
       .then(res => setSession(res.data.session))
-      .then(console.log('SHOW FINISHED SESSION SUCCCESS'))
-      .catch()
+      .then(() => msgAlert({
+        heading: 'Showing Session',
+        message: messages.showSessionSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Show Session failed with error: ' + error.message,
+          message: messages.showSessionFailure,
+          variant: 'danger'
+        })
+      })
   }, [])
 
   const destory = () => {
+    const msgAlert = props.msgAlert
     // DELETE SESSION
     deleteSession(props.match.params.id, props.user)
       .then(setDeleted(true))
-      .then(console.log('DELETE SUCCESS'))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Deleted Session',
+        message: messages.deleteSessionSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Delete Session failed with error: ' + error.message,
+          message: messages.deleteSessionFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   if (!session) {

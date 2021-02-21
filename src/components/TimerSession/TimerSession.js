@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { showSession } from '../../api/sessions'
 import Layout from '../Layout/Layout'
-import { StudyTimer, BreakTimer } from '../Timer/Timer'
+import BreakTimer from '../BreakTimer/BreakTimer'
+import StudyTimer from '../StudyTimer/StudyTimer'
+// import TimerHOC from '../Timer2/Timer2'
+// import TimerBreak from '../Timer2/TimerBreak'
 // import Checkbox from '../Checkbox/Checkbox'
 
 const TimerSession = props => {
@@ -47,12 +50,12 @@ const TimerSession = props => {
           <li>{session.goal3}</li>
         </ul>
       </div>
-      <div className="timerContainer">
-        <p>Study timer</p>
-        <StudyTimer
-        />
-        <p>Break timer</p>
+      <div className="breakTimer">
         <BreakTimer
+        />
+      </div>
+      <div className="studyTimer">
+        <StudyTimer
         />
       </div>
       <div className="center-this">

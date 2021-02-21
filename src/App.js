@@ -65,19 +65,19 @@ class App extends Component {
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} path='/create-session' render={() => (
-            <CreateSession user={user} />
+            <CreateSession msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/sessions' render={() => (
-            <IndexSession user={user} />
+            <IndexSession msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/sessions/:id' render={() => (
-            <ShowSession user={user} />
+            <ShowSession msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/sessions/:id/timer' render={() => (
-            <TimerSession user={user} />
+            <TimerSession msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/sessions/:id/close' render={() => (
-            <CloseSession user={user} />
+            <CloseSession msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
