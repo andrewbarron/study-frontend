@@ -5,12 +5,18 @@ import Layout from '../Layout/Layout'
 // import BreakTimer from '../BreakTimer/BreakTimer'
 import StudyTimer from '../StudyTimer/StudyTimer'
 import messages from '../AutoDismissAlert/messages'
-// import Checkbox from '../Checkbox/Checkbox'
+import Checkbox from '../Checkbox/Checkbox'
 import Button from 'react-bootstrap/Button'
 
 const TimerSession = props => {
   const [session, setSession] = useState([])
-  const [clickMe, setClickMe] = useState(false)
+  const [closeThisSession, setCloseThisSession] = useState(false)
+  const [checked, setChecked] = useState(false)
+  const [checked2, setChecked2] = useState(false)
+  const [checked3, setChecked3] = useState(false)
+  const divStyle = {
+    listStyleType: 'none'
+  }
   useEffect(() => {
     const msgAlert = props.msgAlert
     // SHOW SESSION
@@ -30,26 +36,45 @@ const TimerSession = props => {
       })
   }, [])
 
-  const handleThisClick = event => {
+  const handleCheckboxChange = event => {
+    event.persist()
+    setChecked(event.target.checked)
+  }
+  const handleCheckboxChange2 = event => {
+    event.persist()
+    setChecked2(event.target.checked)
+  }
+  const handleCheckboxChange3 = event => {
+    event.persist()
+    setChecked3(event.target.checked)
+  }
+
+  const handleClose = event => {
     event.preventDefault()
-    setClickMe(true)
+    setCloseThisSession(true)
   }
 
   if (!session) {
     return <p>Loading...</p>
   }
 
-  if (clickMe) {
+  if (closeThisSession) {
     return <Redirect to={`/sessions/${session._id}/close`} />
   }
 
   return (
     <Layout>
       <div className="goals">
-        <ul>
-          <li>{session.goal1}</li>
-          <li>{session.goal2}</li>
-          <li>{session.goal3}</li>
+        <ul style={divStyle}>
+          <li><label>
+            <Checkbox checked={checked} onChange={handleCheckboxChange} /> {session.goal1}
+          </label></li>
+          <li><label>
+            <Checkbox checked={checked2} onChange={handleCheckboxChange2}/> {session.goal2}
+          </label></li>
+          <li><label>
+            <Checkbox checked={checked3} onChange={handleCheckboxChange3}/> {session.goal3}
+          </label></li>
         </ul>
       </div>
       <div className="studyTimer">
@@ -57,7 +82,7 @@ const TimerSession = props => {
         />
       </div>
       <div className="center-this">
-        <Button variant="outline-danger" onClick={handleThisClick}>Finish Session</Button>
+        <Button variant="outline-danger" onClick={handleClose}>Finish Session</Button>
       </div>
     </Layout>
   )

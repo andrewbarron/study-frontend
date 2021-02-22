@@ -8,7 +8,6 @@ import Button from 'react-bootstrap/Button'
 const ShowSession = props => {
   const [session, setSession] = useState([])
   const [deleted, setDeleted] = useState(false)
-
   useEffect(() => {
     const msgAlert = props.msgAlert
     // SHOW SESSION
@@ -57,7 +56,6 @@ const ShowSession = props => {
 
   return (
     <Layout>
-      <p>Session Goals (Show)</p>
       <div className="goals">
         <ul>
           <li>{session.goal1}</li>

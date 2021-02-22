@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button'
 
 const StudyTimer = () => {
   const [timerEnded, setTimerEnded] = useState(false)
+  const [starter, setStarter] = useState(false)
+  const [thisTime, setThisTime] = useState(false)
   const { value, controls } = useTimer({
     initialTime: 10000,
     direction: 'backward',
@@ -13,11 +15,16 @@ const StudyTimer = () => {
     onReset: () => setTimeout(() => {
       controls.setTime(10000)
       controls.start()
-    }, 5000)
+    }, 5000),
+    onStart: () => { setStarter(true) }
   })
 
   useEffect(() => {
     controls.setCheckpoints([
+      {
+        time: 9500,
+        callback: () => setThisTime(true)
+      },
       {
         time: 0,
         callback: () => console.log('Study Timer Finished.')
@@ -29,6 +36,10 @@ const StudyTimer = () => {
       {
         time: 0,
         callback: () => setTimerEnded(true)
+      },
+      {
+        time: 0,
+        callback: () => setThisTime(false)
       }
     ])
   }, [])
@@ -40,9 +51,9 @@ const StudyTimer = () => {
   return (
     <div>
       <div className="center-this">
-        <Button variant="outline-secondary" onClick={controls.start}>Start Session</Button>
+        { starter ? null : <Button variant="outline-secondary" onClick={controls.start}>Start Session</Button> }
       </div>
-      <h3> Study Timer</h3>
+      { thisTime ? <h3 className="thisTime">Study Time!</h3> : null }
       <div>{value.m} m {value.s} s </div>
       <div>{controls.getTimerState()}</div>
       <div className="breakTimer">
