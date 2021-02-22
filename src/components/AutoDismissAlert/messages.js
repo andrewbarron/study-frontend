@@ -15,5 +15,7 @@ export default {
   showSessionSuccess: 'Here is that prior session.',
   showSessionFailure: 'Unable to retrieve prior session.',
   deleteSessionSuccess: 'Deleted prior Session.',
-  deleteSessionFailure: 'Unable to delete prior session.'
+  deleteSessionFailure: 'Unable to delete prior session.',
+  startSessionSuccess: 'Time to get to work!',
+  startSessionFailure: 'Unable to start session.'
 }

@@ -23,14 +23,14 @@ const TimerSession = props => {
     showSession(props.match.params.id, props.user)
       .then(res => setSession(res.data.session))
       .then(() => msgAlert({
-        heading: 'Showing Session',
-        message: messages.showSessionSuccess,
+        heading: 'Starting Session',
+        message: messages.startSessionSuccess,
         variant: 'success'
       }))
       .catch(error => {
         msgAlert({
-          heading: 'Show Session failed with error: ' + error.message,
-          message: messages.showSessionFailure,
+          heading: 'Start Session failed with error: ' + error.message,
+          message: messages.startSessionFailure,
           variant: 'danger'
         })
       })
@@ -77,11 +77,10 @@ const TimerSession = props => {
           </label></li>
         </ul>
       </div>
-      <div className="studyTimer">
-        <StudyTimer
-        />
-      </div>
-      <div className="center-this">
+      <StudyTimer
+      />
+      <br></br>
+      <div className="done-button">
         <Button variant="outline-danger" onClick={handleClose}>Finish Session</Button>
       </div>
     </Layout>

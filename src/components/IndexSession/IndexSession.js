@@ -5,12 +5,12 @@ import messages from '../AutoDismissAlert/messages'
 
 const IndexSession = props => {
   const [sessions, setSessions] = useState([])
-
   useEffect(() => {
     const msgAlert = props.msgAlert
     // INDEX SESSIONS
     indexSession(props.user)
-      .then(res => setSessions(res.data.sessions))
+      .then(res =>
+        setSessions(res.data.sessions))
       .then(() => msgAlert({
         heading: 'Index your sessions',
         message: messages.indexSessionsSuccess,
@@ -27,7 +27,7 @@ const IndexSession = props => {
 
   const sessionsJsx = sessions.map(session => (
     <li key={session._id}>
-      <Link to={`/sessions/${session._id}`}>{session._id}</Link>
+      <Link to={`/sessions/${session._id}`}>{session.createdAt}</Link>
     </li>
   ))
 

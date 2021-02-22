@@ -4,7 +4,7 @@ import React from 'react'
 
 const Layout = props => (
   <div>
-    <h1>Your session</h1>
+    <h1 className="center-this">Goals:</h1>
 
     {props.children}
 

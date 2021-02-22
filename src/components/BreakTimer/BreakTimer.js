@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useTimer } from 'react-compound-timer'
 import { withRouter } from 'react-router-dom'
 
 export const BreakTimer = ({ timerEnded }) => {
   let plsWork
-  const [thisTime, setThisTime] = useState(false)
   const { value, controls } = useTimer({
     initialTime: 5000,
     direction: 'backward',
@@ -18,20 +17,12 @@ export const BreakTimer = ({ timerEnded }) => {
   useEffect(() => {
     controls.setCheckpoints([
       {
-        time: 4500,
-        callback: () => setThisTime(true)
-      },
-      {
         time: 0,
         callback: () => console.log('Break Timer finished.')
       },
       {
         time: 0,
         callback: () => controls.reset()
-      },
-      {
-        time: 0,
-        callback: () => setThisTime(false)
       }
     ])
   }, [timerEnded])
@@ -47,12 +38,10 @@ export const BreakTimer = ({ timerEnded }) => {
   }
 
   return (
-    <div>
-      {thisTime ? <h3 className="thisTime">Break Time!</h3> : null}
-      <div> {value.m} m {value.s} s </div>
-      <div>{controls.getTimerState()}</div>
+    <React.Fragment>
       <a>{plsWork}</a>
-    </div>
+      <div className="breakTimer"> {value.m} m {value.s} s {controls.getTimerState()} </div>
+    </React.Fragment>
   )
 }
 

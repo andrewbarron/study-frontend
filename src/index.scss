@@ -7,7 +7,9 @@ $danger: #F95738;
 @import '~bootstrap/scss/bootstrap';
 
 .timerContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
+
 }
 
 .goals {
@@ -16,12 +18,18 @@ $danger: #F95738;
 }
 
 .studyTimer {
-  justify-content: flex-start;
+  grid-column-start: 1;
+  grid-column-end: first;
+  grid-row-start: row1-start;
+  grid-row-end: 2;
 }
 
 .breakTimer {
-  display: flex;
-  justify-content: flex-end;
+  grid-column-start: 1;
+  grid-column-end: first;
+  grid-row-start: row2-start;
+  grid-row-end: 2;
+  text-align: right;
 }
 
 .center-this {
@@ -30,5 +38,13 @@ $danger: #F95738;
 }
 
 .thisTime {
+  display: flex;
+  justify-content: center;
   color: green;
+}
+
+.done-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
 }
