@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
-
+import Button from 'react-bootstrap/Button'
 // const GoalsForm = ({ session, handleSubmit, handleChange }) => (
 //   <form onSubmit={handleSubmit} >
 //     <label>Goals</label>
@@ -29,9 +29,9 @@ const GoalsForm = ({ session, handleSubmit, handleChange, handleReset }) => (
             <Field placeholder="Session Goal 3" type="text" name="goal3" value={session.goal3} onChange={handleChange} />
           </div>
           <div className="center-this" >
-            <button type="submit" className="btn btn-success" disabled={isSubmitting} >
+            <Button type="submit" variant="outline-secondary" disabled={isSubmitting} >
             Submit
-            </button>
+            </Button>
           </div>
         </Form>
       )}

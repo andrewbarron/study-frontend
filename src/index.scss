@@ -1,6 +1,6 @@
 // Set the bootstrap variant colors before we import bootstrap
-$primary: #a22c29;
-$secondary: #b9baa3;
+$primary: #264653;
+$secondary: #2a9d8f;
 $success: #70e000;
 $danger: #F95738;
 
@@ -16,7 +16,6 @@ $danger: #F95738;
 }
 
 .studyTimer {
-  display: flex;
   justify-content: flex-start;
 }
 

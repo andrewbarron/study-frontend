@@ -3,6 +3,7 @@ import { Redirect, withRouter } from 'react-router-dom'
 import { showSession, deleteSession } from '../../api/sessions'
 import Layout from '../Layout/Layout'
 import messages from '../AutoDismissAlert/messages'
+import Button from 'react-bootstrap/Button'
 
 const ShowSession = props => {
   const [session, setSession] = useState([])
@@ -66,7 +67,7 @@ const ShowSession = props => {
       </div>
       <h4>Session Review {session.review}</h4>
       <div className="center-this">
-        <button className="btn btn-danger" onClick={destory}>Delete Session</button>
+        <Button variant="outline-danger" onClick={destory}>Delete Session</Button>
       </div>
     </Layout>
   )

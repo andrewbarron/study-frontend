@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 const ReviewForm = ({ session, handleChange, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <label>Review</label>
@@ -9,7 +10,7 @@ const ReviewForm = ({ session, handleChange, handleSubmit }) => (
       name="review"
       onChange={handleChange}
     />
-    <button type="submit">Submit</button>
+    <Button variant="outline-secondary" type="submit">Submit</Button>
   </form>
 )
 

@@ -2,35 +2,38 @@ import React, { useState, useEffect } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import { showSession } from '../../api/sessions'
 import Layout from '../Layout/Layout'
-import BreakTimer from '../BreakTimer/BreakTimer'
+// import BreakTimer from '../BreakTimer/BreakTimer'
 import StudyTimer from '../StudyTimer/StudyTimer'
-// import TimerHOC from '../Timer2/Timer2'
-// import TimerBreak from '../Timer2/TimerBreak'
+import messages from '../AutoDismissAlert/messages'
 // import Checkbox from '../Checkbox/Checkbox'
+import Button from 'react-bootstrap/Button'
 
 const TimerSession = props => {
   const [session, setSession] = useState([])
   const [clickMe, setClickMe] = useState(false)
-  // const [checked, setChecked] = useState(false)
-  // console.log(checked)
-
   useEffect(() => {
+    const msgAlert = props.msgAlert
     // SHOW SESSION
     showSession(props.match.params.id, props.user)
       .then(res => setSession(res.data.session))
-      .then(console.log('SHOW TIMERPAGE SUCCESS'))
-      .catch()
+      .then(() => msgAlert({
+        heading: 'Showing Session',
+        message: messages.showSessionSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Show Session failed with error: ' + error.message,
+          message: messages.showSessionFailure,
+          variant: 'danger'
+        })
+      })
   }, [])
 
   const handleThisClick = event => {
     event.preventDefault()
     setClickMe(true)
   }
-
-  // const handleCheckboxChange = event => {
-  //   event.preventDefault()
-  //   setChecked(!checked)
-  // }
 
   if (!session) {
     return <p>Loading...</p>
@@ -42,7 +45,6 @@ const TimerSession = props => {
 
   return (
     <Layout>
-      <p>Session Goals (Timer)</p>
       <div className="goals">
         <ul>
           <li>{session.goal1}</li>
@@ -50,16 +52,12 @@ const TimerSession = props => {
           <li>{session.goal3}</li>
         </ul>
       </div>
-      <div className="breakTimer">
-        <BreakTimer
-        />
-      </div>
       <div className="studyTimer">
         <StudyTimer
         />
       </div>
       <div className="center-this">
-        <button className="btn btn-success" onClick={handleThisClick}>Finish Session</button>
+        <Button variant="outline-danger" onClick={handleThisClick}>Finish Session</Button>
       </div>
     </Layout>
   )

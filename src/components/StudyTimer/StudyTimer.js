@@ -1,26 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTimer } from 'react-compound-timer'
+import { withRouter } from 'react-router-dom'
+import BreakTimer from '../BreakTimer/BreakTimer'
+import Button from 'react-bootstrap/Button'
 
-export const StudyTimer = () => {
+const StudyTimer = () => {
+  const [timerEnded, setTimerEnded] = useState(false)
   const { value, controls } = useTimer({
-    initialTime: 45000,
+    initialTime: 10000,
     direction: 'backward',
     startImmediately: false,
     onReset: () => setTimeout(() => {
-      controls.setTime(45000)
+      controls.setTime(10000)
       controls.start()
-    }, 15000)
+    }, 5000)
   })
 
   useEffect(() => {
     controls.setCheckpoints([
       {
-        time: 30000,
-        callback: () => console.log('30 seconds')
+        time: 0,
+        callback: () => console.log('Study Timer Finished.')
       },
       {
         time: 0,
         callback: () => controls.reset()
+      },
+      {
+        time: 0,
+        callback: () => setTimerEnded(true)
       }
     ])
   }, [])
@@ -31,12 +39,18 @@ export const StudyTimer = () => {
 
   return (
     <div>
-      <div> {value.m} m {value.s} s </div>
-      <div>{controls.getTimerState()}</div>
-      <div> <button onClick={controls.start}>Start</button>
+      <div className="center-this">
+        <Button variant="outline-secondary" onClick={controls.start}>Start Session</Button>
       </div>
+      <h3> Study Timer</h3>
+      <div>{value.m} m {value.s} s </div>
+      <div>{controls.getTimerState()}</div>
+      <div className="breakTimer">
+        <BreakTimer timerEnded={timerEnded} />
+      </div>
+
     </div>
   )
 }
 
-export default StudyTimer
+export default withRouter(StudyTimer)
