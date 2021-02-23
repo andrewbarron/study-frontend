@@ -17,6 +17,7 @@ const TimerSession = props => {
   const divStyle = {
     listStyleType: 'none'
   }
+
   useEffect(() => {
     const msgAlert = props.msgAlert
     // SHOW SESSION
@@ -25,7 +26,7 @@ const TimerSession = props => {
       .then(() => msgAlert({
         heading: 'Starting Session',
         message: messages.startSessionSuccess,
-        variant: 'success'
+        variant: 'secondary'
       }))
       .catch(error => {
         msgAlert({

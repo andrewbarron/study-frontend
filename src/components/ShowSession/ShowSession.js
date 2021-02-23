@@ -16,7 +16,7 @@ const ShowSession = props => {
       .then(() => msgAlert({
         heading: 'Showing Session',
         message: messages.showSessionSuccess,
-        variant: 'success'
+        variant: 'secondary'
       }))
       .catch(error => {
         msgAlert({

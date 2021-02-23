@@ -50,7 +50,7 @@ const StudyTimer = () => {
 
   return (
     <React.Fragment>
-      <h2 className="center-this"> { starter ? null : <Button variant="outline-secondary" onClick={controls.start}>Start Session</Button> } </h2>
+      <h2 className="center-this"> { starter ? null : <Button variant="outline-danger" onClick={controls.start}>Start Session</Button> } </h2>
       { thisTime ? <h3 className="thisTime">Study Time!</h3> : <h3 className="thisTime">Break Time!</h3> }
       <div className="timerContainer">
         <div className="studyTimer">{value.m} m {value.s} s {controls.getTimerState()}</div>

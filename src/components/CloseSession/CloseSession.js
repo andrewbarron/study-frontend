@@ -30,7 +30,7 @@ const CloseSession = props => {
       .then(() => msgAlert({
         heading: 'Closed Session!',
         message: messages.closeSessionSuccess,
-        variant: 'success'
+        variant: 'secondary'
       }))
       .catch(error => {
         msgAlert({

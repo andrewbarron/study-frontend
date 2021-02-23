@@ -64,9 +64,6 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
-          <AuthenticatedRoute user={user} path='/create-session' render={() => (
-            <CreateSession msgAlert={this.msgAlert} user={user} />
-          )} />
           <AuthenticatedRoute user={user} exact path='/sessions' render={() => (
             <IndexSession msgAlert={this.msgAlert} user={user} />
           )} />
@@ -86,6 +83,9 @@ class App extends Component {
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
+        <AuthenticatedRoute user={user} path='/create-session' render={() => (
+          <CreateSession msgAlert={this.msgAlert} user={user} />
+        )} />
       </Fragment>
     )
   }

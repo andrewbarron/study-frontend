@@ -15,8 +15,6 @@ const CreateSession = props => {
   // Session ID is the redirect after GoalsForm
   const [createdSessionId, setCreatedSessionId] = useState(null)
   // goalsSet is set to false, once I complete the GoalsForm, set it to true & init the next step.
-  // const [goalsSet, setGoalsSet] = useState(false)
-
   // handleChange is so that the GoalsForm is not constantly updated while I'm typing.
   const handleChange = event => {
     event.persist()
@@ -33,11 +31,6 @@ const CreateSession = props => {
     // CREATE SESSION
     createSession(user, session)
       .then(res => setCreatedSessionId(res.data.session._id))
-      .then(() => msgAlert({
-        heading: 'Created Session!',
-        message: messages.createSessionSuccess,
-        variant: 'success'
-      }))
       .catch(error => {
         msgAlert({
           heading: 'Create Session failed with error: ' + error.message,
@@ -52,11 +45,13 @@ const CreateSession = props => {
   }
 
   return (
-    <GoalsForm
-      session={session}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-    />
+    <React.Fragment>
+      <GoalsForm
+        session={session}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+    </React.Fragment>
   )
 }
 

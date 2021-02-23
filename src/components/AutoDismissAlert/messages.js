@@ -6,7 +6,6 @@ export default {
   signOutSuccess: 'Come back soon!',
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change passwords. Check your old password and try again.',
-  createSessionSuccess: 'Created session! Let\'s get to work.',
   createSessionFailure: 'Unable to create session.',
   closeSessionSuccess: 'Session finished, nice work!',
   closeSessionFailure: 'Unable to close the session.',
@@ -16,6 +15,6 @@ export default {
   showSessionFailure: 'Unable to retrieve prior session.',
   deleteSessionSuccess: 'Deleted prior Session.',
   deleteSessionFailure: 'Unable to delete prior session.',
-  startSessionSuccess: 'Time to get to work!',
+  startSessionSuccess: 'Session has been created, let\'s get to work!',
   startSessionFailure: 'Unable to start session.'
 }
