@@ -63,7 +63,7 @@ const ShowSession = props => {
           <li>{session.goal3}</li>
         </ul>
       </div>
-      <h4>Session Review {session.review}</h4>
+      <h4>Session Review: {session.review}</h4>
       <div className="center-this">
         <Button variant="outline-danger" onClick={destory}>Delete Session</Button>
       </div>
