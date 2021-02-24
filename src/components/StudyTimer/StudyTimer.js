@@ -4,10 +4,11 @@ import { withRouter } from 'react-router-dom'
 import BreakTimer from '../BreakTimer/BreakTimer'
 import Button from 'react-bootstrap/Button'
 
-const StudyTimer = () => {
+const StudyTimer = ({ closeTimer }) => {
   const [timerEnded, setTimerEnded] = useState(false)
   const [starter, setStarter] = useState(false)
   const [thisTime, setThisTime] = useState(false)
+  let closeThis
   const { value, controls } = useTimer({
     initialTime: 10000,
     direction: 'backward',
@@ -44,17 +45,24 @@ const StudyTimer = () => {
     ])
   }, [])
 
+  useEffect(() => {
+    if (closeTimer) {
+      closeThis = controls.stop()
+    }
+  }, [closeTimer])
+
   if (!value) {
     return null
   }
 
   return (
     <React.Fragment>
+      <a>{closeThis}</a>
       <h2 className="center-this"> { starter ? null : <Button variant="outline-danger" onClick={controls.start}>Start Session</Button> } </h2>
       { thisTime ? <h3 className="thisTime">Study Time!</h3> : <h3 className="thisTime">Break Time!</h3> }
       <div className="timerContainer">
         <div className="studyTimer">{value.m} m {value.s} s {controls.getTimerState()}</div>
-        <BreakTimer timerEnded={timerEnded} />
+        <BreakTimer timerEnded={timerEnded} closeTimer={closeTimer} />
       </div>
     </React.Fragment>
   )

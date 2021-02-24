@@ -14,6 +14,8 @@ const TimerSession = props => {
   const [checked, setChecked] = useState(false)
   const [checked2, setChecked2] = useState(false)
   const [checked3, setChecked3] = useState(false)
+  const [closeTimer, setCloseTimer] = useState(false)
+
   const divStyle = {
     listStyleType: 'none'
   }
@@ -37,6 +39,12 @@ const TimerSession = props => {
       })
   }, [])
 
+  useEffect(() => {
+    if (closeTimer) {
+      console.log('closetimer is', closeTimer)
+    }
+  }, [closeTimer])
+
   const handleCheckboxChange = event => {
     event.persist()
     setChecked(event.target.checked)
@@ -52,6 +60,7 @@ const TimerSession = props => {
 
   const handleClose = event => {
     event.preventDefault()
+    setCloseTimer(true)
     setCloseThisSession(true)
   }
 
@@ -79,6 +88,7 @@ const TimerSession = props => {
         </ul>
       </div>
       <StudyTimer
+        closeTimer={closeTimer}
       />
       <br></br>
       <div className="done-button">

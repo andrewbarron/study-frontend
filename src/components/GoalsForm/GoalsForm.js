@@ -17,7 +17,7 @@ import Button from 'react-bootstrap/Button'
 
 const GoalsForm = ({ session, handleSubmit, handleChange, handleReset }) => (
   <div>
-    <h1 className="center-this">What would you like to accomplish?</h1>
+    <h1 className="center-this">What would you like to accomplish today?</h1>
     <Formik
       initialValues={{ goal1: '', goal2: '', goal3: '' }}
     >
@@ -28,7 +28,7 @@ const GoalsForm = ({ session, handleSubmit, handleChange, handleReset }) => (
             <Field placeholder="Session Goal 2" type="text" name="goal2" value={session.goal2} onChange={handleChange} />
             <Field placeholder="Session Goal 3" type="text" name="goal3" value={session.goal3} onChange={handleChange} />
           </div>
-          <div className="center-this" >
+          <div className="done-button">
             <Button type="submit" variant="outline-secondary" disabled={isSubmitting} >
             Submit
             </Button>

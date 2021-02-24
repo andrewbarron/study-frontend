@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { useTimer } from 'react-compound-timer'
 import { withRouter } from 'react-router-dom'
 
-export const BreakTimer = ({ timerEnded }) => {
+export const BreakTimer = ({ timerEnded, closeTimer }) => {
   let plsWork
+  let closeThis
   const { value, controls } = useTimer({
     initialTime: 5000,
     direction: 'backward',
@@ -33,6 +34,12 @@ export const BreakTimer = ({ timerEnded }) => {
     }
   }, [timerEnded])
 
+  useEffect(() => {
+    if (closeTimer) {
+      closeThis = controls.stop()
+    }
+  }, [closeTimer])
+
   if (!value) {
     return null
   }
@@ -40,6 +47,7 @@ export const BreakTimer = ({ timerEnded }) => {
   return (
     <React.Fragment>
       <a>{plsWork}</a>
+      <a>{closeThis}</a>
       <div className="breakTimer"> {value.m} m {value.s} s {controls.getTimerState()} </div>
     </React.Fragment>
   )
